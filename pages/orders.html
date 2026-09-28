@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Orders - MyShop</title>
+
+<style>
+
+/* ================= RESET ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+    color:#222;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    height:68px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:27px;
+    font-weight:bold;
+    color:#7b2cbf;
+}
+
+.header-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.header-btn{
+    border:none;
+    background:#f1e8ff;
+    color:#7b2cbf;
+    padding:10px 17px;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.header-btn:hover{
+    background:#e5d4ff;
+}
+
+/* ================= MAIN ================= */
+
+.container{
+    width:92%;
+    max-width:1100px;
+    margin:32px auto 50px;
+}
+
+.page-title{
+    font-size:29px;
+    margin-bottom:22px;
+}
+
+/* ================= ORDER CARD ================= */
+
+.order-card{
+    background:white;
+    border-radius:15px;
+    margin-bottom:22px;
+    box-shadow:0 3px 15px rgba(0,0,0,0.06);
+    overflow:hidden;
+}
+
+/* ================= ORDER HEADER ================= */
+
+.order-header{
+    background:#fafafa;
+    border-bottom:1px solid #eee;
+    padding:17px 22px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.order-id{
+    font-weight:bold;
+    color:#7b2cbf;
+}
+
+.order-date{
+    color:#777;
+    font-size:14px;
+}
+
+/* ================= ORDER BODY ================= */
+
+.order-body{
+    padding:22px;
+}
+
+.product{
+    display:flex;
+    gap:20px;
+    align-items:center;
+}
+
+.product-image{
+    width:130px;
+    height:150px;
+    object-fit:contain;
+    background:#f7f7f7;
+    border-radius:11px;
+    padding:7px;
+}
+
+.product-info{
+    flex:1;
+}
+
+.product-name{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.product-info p{
+    margin:7px 0;
+    color:#666;
+}
+
+.price{
+    color:#7b2cbf !important;
+    font-size:21px;
+    font-weight:bold;
+}
+
+/* ================= STATUS ================= */
+
+.status-section{
+    margin-top:28px;
+    padding-top:22px;
+    border-top:1px solid #eee;
+}
+
+.status-title{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:25px;
+}
+
+/* ================= TRACKING ================= */
+
+.tracking{
+    display:flex;
+    justify-content:space-between;
+    position:relative;
+    margin:0 15px 15px;
+}
+
+.tracking-line{
+    position:absolute;
+    top:15px;
+    left:4%;
+    right:4%;
+    height:4px;
+    background:#ddd;
+    z-index:0;
+}
+
+.tracking-progress{
+    position:absolute;
+    top:15px;
+    left:4%;
+    height:4px;
+    background:#7b2cbf;
+    z-index:1;
+    transition:0.4s;
+}
+
+.track-step{
+    position:relative;
+    z-index:2;
+    width:20%;
+    text-align:center;
+}
+
+.step-circle{
+    width:31px;
+    height:31px;
+    margin:auto;
+    border-radius:50%;
+    background:#ddd;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.track-step.completed .step-circle{
+    background:#7b2cbf;
+}
+
+.track-step.current .step-circle{
+    background:#7b2cbf;
+    box-shadow:0 0 0 5px #eadcff;
+}
+
+.step-text{
+    margin-top:10px;
+    font-size:12px;
+    color:#777;
+}
+
+.track-step.completed .step-text,
+.track-step.current .step-text{
+    color:#7b2cbf;
+    font-weight:bold;
+}
+
+/* ================= DELIVERY ================= */
+
+.delivery-info{
+    margin-top:25px;
+    background:#f4edff;
+    padding:15px;
+    border-radius:9px;
+    color:#555;
+}
+
+.delivery-info strong{
+    color:#7b2cbf;
+}
+
+/* ================= ORDER DETAILS ================= */
+
+.details-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:22px;
+}
+
+.detail-box{
+    background:#fafafa;
+    padding:14px;
+    border-radius:9px;
+}
+
+.detail-box span{
+    display:block;
+    color:#777;
+    font-size:13px;
+    margin-bottom:6px;
+}
+
+.detail-box strong{
+    font-size:14px;
+}
+
+/* ================= ACTIONS ================= */
+
+.actions{
+    display:flex;
+    gap:12px;
+    margin-top:22px;
+}
+
+.action-btn{
+    padding:12px 20px;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.track-btn{
+    background:#7b2cbf;
+    color:white;
+    border:none;
+}
+
+.cancel-btn{
+    background:white;
+    color:#d62828;
+    border:1px solid #d62828;
+}
+
+.cancel-btn:hover{
+    background:#fff2f2;
+}
+
+.track-btn:hover{
+    background:#6320a4;
+}
+
+/* ================= EMPTY ================= */
+
+.empty-box{
+    background:white;
+    border-radius:15px;
+    padding:75px 20px;
+    text-align:center;
+    box-shadow:0 3px 15px rgba(0,0,0,0.06);
+}
+
+.empty-icon{
+    font-size:55px;
+    margin-bottom:18px;
+}
+
+.empty-box h2{
+    margin-bottom:10px;
+}
+
+.empty-box p{
+    color:#777;
+}
+
+.shop-btn{
+    margin-top:22px;
+    padding:13px 25px;
+    border:none;
+    border-radius:8px;
+    background:#7b2cbf;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= CANCELLED ================= */
+
+.cancelled{
+    color:#d62828;
+    font-weight:bold;
+}
+
+.cancelled-box{
+    background:#fff2f2;
+    color:#d62828;
+    padding:14px;
+    border-radius:9px;
+    margin-top:20px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:500;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:340px;
+    background:white;
+    border-radius:14px;
+    padding:28px;
+    text-align:center;
+}
+
+.modal-box h3{
+    margin-bottom:10px;
+}
+
+.modal-box p{
+    color:#666;
+    line-height:1.5;
+}
+
+.modal-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:22px;
+}
+
+.modal-buttons button{
+    flex:1;
+    padding:12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.confirm-cancel{
+    background:#d62828;
+    color:white;
+    border:none;
+}
+
+.close-modal{
+    background:white;
+    color:#555;
+    border:1px solid #ccc;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
+
+    header{
+        padding:0 4%;
+    }
+
+    .logo{
+        font-size:23px;
+    }
+
+    .container{
+        width:94%;
+        margin-top:22px;
+    }
+
+    .page-title{
+        font-size:25px;
+    }
+
+    .order-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .product{
+        align-items:flex-start;
+    }
+
+    .product-image{
+        width:100px;
+        height:120px;
+    }
+
+    .product-name{
+        font-size:17px;
+    }
+
+    .details-grid{
+        grid-template-columns:1fr;
+    }
+
+    .tracking{
+        margin:0;
+    }
+
+    .step-text{
+        font-size:10px;
+    }
+
+    .actions{
+        flex-direction:column;
+    }
+
+    .action-btn{
+        width:100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        MyShop
+    </div>
+
+    <div class="header-buttons">
+
+        <button
+            class="header-btn"
+            onclick="goHome()"
+        >
+            Home
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+    <h1 class="page-title">
+        My Orders
+    </h1>
+
+    <div id="ordersContainer"></div>
+
+</div>
+
+
+
+<!-- ================= CANCEL MODAL ================= -->
+
+<div
+    class="modal"
+    id="cancelModal"
+>
+
+    <div class="modal-box">
+
+        <h3>
+            Cancel Order?
+        </h3>
+
+        <p>
+            Are you sure you want to cancel
+            this order?
+        </p>
+
+        <div class="modal-buttons">
+
+            <button
+                class="close-modal"
+                onclick="closeCancelModal()"
+            >
+                No
+            </button>
+
+            <button
+                class="confirm-cancel"
+                onclick="confirmCancel()"
+            >
+                Yes, Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   GET ALL ORDERS
+===================================================== */
+
+let orders =
+    JSON.parse(
+        localStorage.getItem("ordersHistory")
+    ) || [];
+
+
+/* =====================================================
+   DISPLAY ORDERS
+===================================================== */
+
+function displayOrders(){
+
+    const container =
+        document.getElementById(
+            "ordersContainer"
+        );
+
+
+    /* =================================================
+       NO ORDERS
+    ================================================= */
+
+    if(orders.length === 0){
+
+        container.innerHTML = `
+
+            <div class="empty-box">
+
+                <div class="empty-icon">
+                    📦
+                </div>
+
+                <h2>
+                    No Orders Yet
+                </h2>
+
+                <p>
+                    Your placed orders will appear here.
+                </p>
+
+                <button
+                    class="shop-btn"
+                    onclick="goHome()"
+                >
+                    Start Shopping
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    /* =================================================
+       ALL ORDERS
+    ================================================= */
+
+    let allOrdersHTML = "";
+
+
+    orders.forEach(function(order, orderIndex){
+
+        const products =
+            order.products || [];
+
+
+        if(products.length === 0){
+            return;
+        }
+
+
+        /* =================================================
+           DELIVERY DATE
+        ================================================= */
+
+        const deliveryDate =
+            new Date();
+
+        deliveryDate.setDate(
+            deliveryDate.getDate() + 5
+        );
+
+
+        const formattedDelivery =
+            deliveryDate.toLocaleDateString(
+                "en-IN",
+                {
+                    day:"numeric",
+                    month:"short",
+                    year:"numeric"
+                }
+            );
+
+
+        /* =================================================
+           CANCEL STATUS
+        ================================================= */
+
+        let statusHTML = "";
+
+
+        if(order.cancelled === true){
+
+            statusHTML = `
+
+                <div class="cancelled-box">
+
+                    ❌
+
+                    <strong>
+                        Order Cancelled
+                    </strong>
+
+                    <p>
+                        This order has been cancelled.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+        else{
+
+            statusHTML = `
+
+                <div class="status-section">
+
+                    <div class="status-title">
+                        Order Status
+                    </div>
+
+
+                    <div class="tracking">
+
+                        <div class="tracking-line"></div>
+
+                        <div
+                            class="tracking-progress"
+                            style="width:4%;"
+                        ></div>
+
+
+                        <!-- STEP 1 -->
+
+                        <div class="track-step completed">
+
+                            <div class="step-circle">
+                                ✓
+                            </div>
+
+                            <div class="step-text">
+                                Order Placed
+                            </div>
+
+                        </div>
+
+
+                        <!-- STEP 2 -->
+
+                        <div class="track-step">
+
+                            <div class="step-circle">
+                                2
+                            </div>
+
+                            <div class="step-text">
+                                Packed
+                            </div>
+
+                        </div>
+
+
+                        <!-- STEP 3 -->
+
+                        <div class="track-step">
+
+                            <div class="step-circle">
+                                3
+                            </div>
+
+                            <div class="step-text">
+                                Shipped
+                            </div>
+
+                        </div>
+
+
+                        <!-- STEP 4 -->
+
+                        <div class="track-step">
+
+                            <div class="step-circle">
+                                4
+                            </div>
+
+                            <div class="step-text">
+                                Out for Delivery
+                            </div>
+
+                        </div>
+
+
+                        <!-- STEP 5 -->
+
+                        <div class="track-step">
+
+                            <div class="step-circle">
+                                5
+                            </div>
+
+                            <div class="step-text">
+                                Delivered
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="delivery-info">
+
+                        🚚 Estimated delivery by
+
+                        <strong>
+                            ${formattedDelivery}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =================================================
+           PRODUCT HTML
+        ================================================= */
+
+        const productsHTML =
+            products.map(function(product){
+
+                return `
+
+                    <div
+                        class="product"
+                        style="margin-bottom:22px;"
+                    >
+
+                        <img
+                            class="product-image"
+                            src="${product.image}"
+                            alt="${product.name}"
+                        >
+
+
+                        <div class="product-info">
+
+                            <div class="product-name">
+                                ${product.name}
+                            </div>
+
+
+                            <p>
+                                Size:
+                                <strong>
+                                    ${product.size || "N/A"}
+                                </strong>
+                            </p>
+
+
+                            <p>
+                                Quantity:
+                                <strong>
+                                    ${product.quantity || 1}
+                                </strong>
+                            </p>
+
+
+                            <p>
+                                Payment:
+                                <strong>
+                                    ${order.payment}
+                                </strong>
+                            </p>
+
+
+                            <p class="price">
+                                ₹${Number(product.price)
+                                .toLocaleString("en-IN")}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }).join("");
+
+
+        /* =================================================
+           ORDER ID
+        ================================================= */
+
+        if(!order.orderId){
+
+            order.orderId =
+                "MY" +
+                Math.floor(
+                    10000000 +
+                    Math.random() * 90000000
+                );
+
+        }
+
+
+        /* =================================================
+           ACTION BUTTONS
+        ================================================= */
+
+        let actionsHTML = "";
+
+
+        if(order.cancelled !== true){
+
+            actionsHTML = `
+
+                <div class="actions">
+
+                    <button
+                        class="action-btn track-btn"
+                        onclick="trackOrder('${order.orderId}')"
+                    >
+                        📦 Track Order
+                    </button>
+
+
+                    <button
+                        class="action-btn cancel-btn"
+                        onclick="openCancelModal('${order.orderId}')"
+                    >
+                        Cancel Order
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =================================================
+           COMPLETE ORDER CARD
+        ================================================= */
+
+        allOrdersHTML += `
+
+            <div class="order-card">
+
+
+                <!-- ORDER HEADER -->
+
+                <div class="order-header">
+
+                    <div>
+
+                        <div class="order-id">
+                            Order ID:
+                            ${order.orderId}
+                        </div>
+
+                    </div>
+
+
+                    <div class="order-date">
+                        ${order.orderDate}
+                    </div>
+
+                </div>
+
+
+
+                <!-- ORDER BODY -->
+
+                <div class="order-body">
+
+
+                    <!-- PRODUCTS -->
+
+                    ${productsHTML}
+
+
+
+                    <!-- STATUS -->
+
+                    ${statusHTML}
+
+
+
+                    <!-- DETAILS -->
+
+                    <div class="details-grid">
+
+
+                        <div class="detail-box">
+
+                            <span>
+                                Products
+                            </span>
+
+                            <strong>
+                                ${products.length}
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="detail-box">
+
+                            <span>
+                                Customer
+                            </span>
+
+                            <strong>
+                                ${order.customer.name}
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="detail-box">
+
+                            <span>
+                                Mobile
+                            </span>
+
+                            <strong>
+                                ${order.customer.mobile}
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="detail-box">
+
+                            <span>
+                                Payment
+                            </span>
+
+                            <strong>
+                                ${order.payment}
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="detail-box">
+
+                            <span>
+                                Total Amount
+                            </span>
+
+                            <strong>
+                                ₹${Number(order.total)
+                                .toLocaleString("en-IN")}
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="detail-box">
+
+                            <span>
+                                Delivery
+                            </span>
+
+                            <strong>
+                                FREE
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ACTIONS -->
+
+                    ${actionsHTML}
+
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    /* =================================================
+       DISPLAY ALL ORDERS
+    ================================================= */
+
+    container.innerHTML =
+        allOrdersHTML;
+
+
+    /* =================================================
+       SAVE ORDER IDS
+    ================================================= */
+
+    localStorage.setItem(
+        "ordersHistory",
+        JSON.stringify(orders)
+    );
+
+}
+
+
+/* =====================================================
+   TRACK ORDER
+===================================================== */
+
+function trackOrder(orderId){
+
+    alert(
+        "Your order has been placed successfully!\n\n" +
+        "Order ID: " + orderId + "\n\n" +
+        "Current Status: Order Placed\n\n" +
+        "You will receive updates as your order moves."
+    );
+
+}
+
+
+/* =====================================================
+   CANCEL ORDER ID
+===================================================== */
+
+let selectedOrderId = null;
+
+
+/* =====================================================
+   OPEN CANCEL
+===================================================== */
+
+function openCancelModal(orderId){
+
+    selectedOrderId = orderId;
+
+
+    document
+        .getElementById("cancelModal")
+        .classList.add("show");
+
+}
+
+
+/* =====================================================
+   CLOSE CANCEL
+===================================================== */
+
+function closeCancelModal(){
+
+    document
+        .getElementById("cancelModal")
+        .classList.remove("show");
+
+}
+
+
+/* =====================================================
+   CONFIRM CANCEL
+===================================================== */
+
+function confirmCancel(){
+
+    if(!selectedOrderId){
+        return;
+    }
+
+
+    /* Find selected order */
+
+    const order =
+        orders.find(
+            function(item){
+
+                return item.orderId === selectedOrderId;
+
+            }
+        );
+
+
+    if(!order){
+        return;
+    }
+
+
+    /* Cancel selected order */
+
+    order.cancelled = true;
+
+
+    /* Save all orders */
+
+    localStorage.setItem(
+        "ordersHistory",
+        JSON.stringify(orders)
+    );
+
+
+    closeCancelModal();
+
+
+    selectedOrderId = null;
+
+
+    displayOrders();
+
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+function goHome(){
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+displayOrders();
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ShopNest - Login</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    min-height:100vh;
+}
+
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+.page{
+
+    min-height:100vh;
+
+    background-image:
+        linear-gradient(
+            rgba(8,12,30,0.48),
+            rgba(8,12,30,0.48)
+        ),
+        url("images/back.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+}
+
+
+/* =========================
+   LOGIN CARD
+========================= */
+
+.login-card{
+
+    width:100%;
+    max-width:420px;
+
+    padding:40px 35px;
+
+    background:rgba(255,255,255,0.17);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,0.35);
+
+    border-radius:28px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.4);
+
+    color:white;
+
+    text-align:center;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-icon{
+
+    width:65px;
+    height:65px;
+
+    margin:auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,0.20);
+
+    font-size:30px;
+}
+
+
+.logo{
+
+    margin-top:12px;
+
+    font-size:30px;
+
+    font-weight:bold;
+}
+
+
+.logo span{
+    color:#ff6680;
+}
+
+
+.tagline{
+
+    margin-top:5px;
+
+    font-size:13px;
+
+    color:rgba(255,255,255,0.78);
+}
+
+
+/* =========================
+   HEADING
+========================= */
+
+h2{
+
+    margin-top:28px;
+
+    font-size:26px;
+}
+
+
+.subtitle{
+
+    margin-top:8px;
+    margin-bottom:25px;
+
+    font-size:14px;
+
+    color:rgba(255,255,255,0.78);
+
+    line-height:1.5;
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+label{
+
+    display:block;
+
+    text-align:left;
+
+    margin-bottom:8px;
+
+    font-size:13px;
+
+    font-weight:bold;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.input-box{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-bottom:18px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:white;
+
+    color:#222;
+
+    font-size:15px;
+}
+
+
+.input-box:focus{
+
+    outline:2px solid #ff6680;
+}
+
+
+/* =========================
+   SEND OTP BUTTON
+========================= */
+
+.main-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5575,
+            #ff806d
+        );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+
+.main-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(255,90,120,0.35);
+}
+
+
+/* =========================
+   OTP POPUP
+========================= */
+
+.otp-overlay{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(5,10,25,0.80);
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    z-index:9999;
+}
+
+
+.otp-box{
+
+    width:100%;
+
+    max-width:390px;
+
+    background:white;
+
+    padding:35px 28px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,0.5);
+
+    animation:popup 0.3s ease;
+}
+
+
+@keyframes popup{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(0.75);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+    }
+
+}
+
+
+.otp-icon{
+
+    width:68px;
+    height:68px;
+
+    margin:auto;
+
+    margin-bottom:18px;
+
+    border-radius:50%;
+
+    background:#eef0ff;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    font-size:30px;
+}
+
+
+.otp-box h3{
+
+    color:#20254d;
+
+    font-size:24px;
+
+    margin-bottom:8px;
+}
+
+
+.otp-box p{
+
+    color:#777;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    margin-bottom:17px;
+}
+
+
+/* =========================
+   DEMO OTP
+========================= */
+
+.otp-number{
+
+    padding:16px;
+
+    margin-bottom:8px;
+
+    border:
+        2px dashed #5865f2;
+
+    border-radius:13px;
+
+    background:#f1f2ff;
+
+    color:#20254d;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    letter-spacing:7px;
+}
+
+
+.demo-text{
+
+    font-size:12px !important;
+
+    color:#999 !important;
+
+    margin-bottom:18px !important;
+}
+
+
+/* =========================
+   ENTER OTP
+========================= */
+
+.otp-input{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:11px;
+
+    text-align:center;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    letter-spacing:7px;
+}
+
+
+.otp-input:focus{
+
+    outline:2px solid #5865f2;
+}
+
+
+/* =========================
+   SUCCESS POPUP
+========================= */
+
+.success-overlay{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(5,10,25,0.80);
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    z-index:10000;
+}
+
+
+.success-box{
+
+    width:100%;
+
+    max-width:370px;
+
+    background:white;
+
+    padding:38px 28px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,0.5);
+
+    animation:popup 0.3s ease;
+}
+
+
+.success-icon{
+
+    width:75px;
+    height:75px;
+
+    margin:auto;
+
+    margin-bottom:18px;
+
+    border-radius:50%;
+
+    background:#e7f8ee;
+
+    color:#20a464;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    font-size:40px;
+
+    font-weight:bold;
+}
+
+
+.success-box h3{
+
+    color:#20254d;
+
+    font-size:24px;
+
+    margin-bottom:10px;
+}
+
+
+.success-box p{
+
+    color:#777;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    margin-bottom:22px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:600px){
+
+    .page{
+        padding:15px;
+    }
+
+    .login-card{
+        padding:32px 22px;
+        border-radius:23px;
+    }
+
+    .logo{
+        font-size:27px;
+    }
+
+    h2{
+        font-size:23px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<div class="page">
+
+    <div class="login-card">
+
+
+        <div class="logo-icon">
+            🛍️
+        </div>
+
+
+        <div class="logo">
+            Shop<span>Nest</span>
+        </div>
+
+
+        <p class="tagline">
+            Shop Smart. Live Better.
+        </p>
+
+
+        <h2>
+            Welcome Back!
+        </h2>
+
+
+        <p class="subtitle">
+            Enter your email or mobile number
+            to continue
+        </p>
+
+
+        <label>
+            Email ID or Phone Number
+        </label>
+
+
+        <input
+            type="text"
+            id="userInput"
+            class="input-box"
+            placeholder="Enter email or phone number"
+        >
+
+
+        <button
+            class="main-btn"
+            onclick="sendOTP()">
+
+            Send OTP →
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     OTP POPUP
+========================= -->
+
+<div
+    class="otp-overlay"
+    id="otpOverlay">
+
+
+    <div class="otp-box">
+
+
+        <div class="otp-icon">
+            🔐
+        </div>
+
+
+        <h3>
+            OTP Verification
+        </h3>
+
+
+        <p>
+            Enter the OTP shown below
+            to continue.
+        </p>
+
+
+        <div
+            class="otp-number"
+            id="otpNumber">
+
+            000000
+
+        </div>
+
+
+        <p class="demo-text">
+            Demo OTP
+        </p>
+
+
+        <input
+            type="text"
+            id="enteredOTP"
+            class="otp-input"
+            maxlength="6"
+            placeholder="Enter OTP"
+        >
+
+
+        <button
+            class="main-btn"
+            onclick="verifyOTP()">
+
+            Verify OTP ✓
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     SUCCESS POPUP
+========================= -->
+
+<div
+    class="success-overlay"
+    id="successOverlay">
+
+
+    <div class="success-box">
+
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+
+        <h3>
+            Login Successful!
+        </h3>
+
+
+        <p>
+            Your OTP has been verified
+            successfully.
+        </p>
+
+
+        <button
+            class="main-btn"
+            onclick="goToHome()">
+
+            Continue to Shop →
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+/* =========================
+   OTP VARIABLE
+========================= */
+
+let generatedOTP = "";
+
+
+
+/* =========================
+   SEND OTP
+========================= */
+
+function sendOTP(){
+
+    let userInput =
+        document
+        .getElementById("userInput")
+        .value
+        .trim();
+
+
+    /* EMPTY CHECK */
+
+    if(userInput === ""){
+
+        alert(
+            "Please enter your Email ID or Phone Number."
+        );
+
+        return;
+    }
+
+
+    /* =========================
+       EMAIL VALIDATION
+    ========================== */
+
+    let emailPattern =
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+
+    /* =========================
+       PHONE VALIDATION
+    ========================== */
+
+    let phonePattern =
+        /^[6-9][0-9]{9}$/;
+
+
+    /* EMAIL */
+
+    if(userInput.includes("@")){
+
+        if(!emailPattern.test(userInput)){
+
+            alert(
+                "Please enter a valid Email ID."
+            );
+
+            return;
+        }
+
+    }
+
+
+    /* PHONE */
+
+    else{
+
+        if(!phonePattern.test(userInput)){
+
+            alert(
+                "Please enter a valid 10-digit mobile number."
+            );
+
+            return;
+        }
+
+    }
+
+
+    /* =========================
+       GENERATE NEW OTP
+    ========================== */
+
+    generatedOTP =
+        Math.floor(
+            100000 +
+            Math.random() * 900000
+        ).toString();
+
+
+    /* SHOW OTP */
+
+    document
+        .getElementById("otpNumber")
+        .innerText =
+        generatedOTP;
+
+
+    /* CLEAR OLD OTP */
+
+    document
+        .getElementById("enteredOTP")
+        .value = "";
+
+
+    /* OPEN OTP POPUP */
+
+    document
+        .getElementById("otpOverlay")
+        .style.display =
+        "flex";
+
+
+    /* FOCUS */
+
+    setTimeout(function(){
+
+        document
+            .getElementById("enteredOTP")
+            .focus();
+
+    },300);
+
+}
+
+
+
+/* =========================
+   VERIFY OTP
+========================= */
+
+function verifyOTP(){
+
+    let enteredOTP =
+        document
+        .getElementById("enteredOTP")
+        .value
+        .trim();
+
+
+    /* EMPTY */
+
+    if(enteredOTP === ""){
+
+        alert(
+            "Please enter the OTP."
+        );
+
+        return;
+    }
+
+
+    /* CORRECT OTP */
+
+    if(enteredOTP === generatedOTP){
+
+        /* CLOSE OTP */
+
+        document
+            .getElementById("otpOverlay")
+            .style.display =
+            "none";
+
+
+        /* SHOW SUCCESS */
+
+        document
+            .getElementById("successOverlay")
+            .style.display =
+            "flex";
+
+    }
+
+    else{
+
+        alert(
+            "Incorrect OTP. Please try again."
+        );
+
+    }
+
+}
+
+
+
+/* =========================
+   GO TO HOME
+========================= */
+
+function goToHome(){
+
+    window.location.href =
+        "home.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

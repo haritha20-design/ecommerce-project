@@ -1,0 +1,1159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Help & Support - MyShop</title>
+
+<style>
+
+/* ================= RESET ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+    color:#222;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    height:68px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:27px;
+    font-weight:bold;
+    color:#7b2cbf;
+}
+
+.home-btn{
+    border:none;
+    background:#f1e8ff;
+    color:#7b2cbf;
+    padding:10px 18px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+    width:92%;
+    max-width:1050px;
+    margin:30px auto 50px;
+}
+
+.page-title{
+    font-size:29px;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:#777;
+    margin-bottom:22px;
+}
+
+/* ================= SEARCH ================= */
+
+.search-box{
+    background:linear-gradient(
+        135deg,
+        #7b2cbf,
+        #9d4edd
+    );
+    padding:28px;
+    border-radius:18px;
+    margin-bottom:25px;
+    box-shadow:0 5px 20px rgba(123,44,191,0.18);
+}
+
+.search-title{
+    color:white;
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:14px;
+}
+
+.search-wrapper{
+    position:relative;
+}
+
+.search-wrapper input{
+    width:100%;
+    border:none;
+    outline:none;
+    padding:15px 48px 15px 17px;
+    border-radius:10px;
+    font-size:14px;
+}
+
+.search-icon{
+    position:absolute;
+    right:16px;
+    top:13px;
+    font-size:21px;
+}
+
+/* ================= SUPPORT CARDS ================= */
+
+.support-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.support-card{
+    background:white;
+    padding:23px 20px;
+    border-radius:15px;
+    box-shadow:0 3px 15px rgba(0,0,0,0.06);
+    text-align:left;
+    cursor:pointer;
+    transition:0.25s;
+    border:1px solid transparent;
+}
+
+.support-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 7px 22px rgba(123,44,191,0.13);
+    border-color:#e5d2ff;
+}
+
+.support-icon{
+    width:52px;
+    height:52px;
+    margin-bottom:14px;
+    border-radius:13px;
+    background:#f1e8ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+}
+
+.support-card h3{
+    font-size:16px;
+    margin-bottom:7px;
+}
+
+.support-card p{
+    color:#888;
+    font-size:13px;
+    line-height:1.5;
+}
+
+/* ================= QUICK INFO ================= */
+
+.quick-info{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:22px;
+}
+
+.quick-card{
+    background:white;
+    padding:18px;
+    border-radius:13px;
+    box-shadow:0 3px 15px rgba(0,0,0,0.05);
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.quick-icon{
+    width:43px;
+    height:43px;
+    border-radius:10px;
+    background:#f1e8ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    flex-shrink:0;
+}
+
+.quick-card span{
+    display:block;
+    color:#888;
+    font-size:12px;
+    margin-bottom:4px;
+}
+
+.quick-card strong{
+    font-size:14px;
+}
+
+/* ================= SECTION ================= */
+
+.section{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 3px 15px rgba(0,0,0,0.06);
+    margin-bottom:22px;
+}
+
+.section-title{
+    font-size:20px;
+    margin-bottom:18px;
+}
+
+/* ================= FAQ ================= */
+
+.faq-item{
+    border-bottom:1px solid #eee;
+}
+
+.faq-item:last-child{
+    border-bottom:none;
+}
+
+.faq-question{
+    width:100%;
+    border:none;
+    background:white;
+    padding:17px 5px;
+    text-align:left;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.faq-question:hover{
+    color:#7b2cbf;
+}
+
+.faq-answer{
+    display:none;
+    padding:0 5px 17px;
+    color:#777;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.faq-answer.show{
+    display:block;
+}
+
+.plus{
+    font-size:20px;
+    color:#7b2cbf;
+}
+
+/* ================= CONTACT ================= */
+
+.contact-box{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.contact-item{
+    background:#fafafa;
+    border-radius:12px;
+    padding:18px;
+    border:1px solid #eee;
+}
+
+.contact-icon{
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.contact-item h4{
+    margin-bottom:7px;
+}
+
+.contact-item p{
+    color:#777;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.contact-item a{
+    color:#7b2cbf;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* ================= BOTTOM SUPPORT ================= */
+
+.final-support{
+    background:linear-gradient(
+        135deg,
+        #f1e8ff,
+        #faf7ff
+    );
+    border:1px solid #e6d6f8;
+    padding:27px;
+    border-radius:16px;
+    text-align:center;
+}
+
+.final-support h2{
+    color:#7b2cbf;
+    font-size:21px;
+    margin-bottom:8px;
+}
+
+.final-support p{
+    color:#777;
+    font-size:14px;
+    margin-bottom:17px;
+}
+
+.support-btn{
+    border:none;
+    background:#7b2cbf;
+    color:white;
+    padding:11px 23px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.support-btn:hover{
+    background:#6920a8;
+}
+
+/* ================= NO RESULT ================= */
+
+.no-result{
+    display:none;
+    text-align:center;
+    color:#888;
+    padding:18px;
+    font-size:14px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
+
+    header{
+        padding:0 4%;
+    }
+
+    .logo{
+        font-size:23px;
+    }
+
+    .container{
+        width:94%;
+        margin-top:22px;
+    }
+
+    .page-title{
+        font-size:25px;
+    }
+
+    .search-box{
+        padding:22px;
+    }
+
+    .support-grid{
+        grid-template-columns:1fr;
+    }
+
+    .quick-info{
+        grid-template-columns:1fr;
+    }
+
+    .contact-box{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        MyShop
+    </div>
+
+    <button
+        class="home-btn"
+        onclick="goHome()"
+    >
+        Home
+    </button>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+    <h1 class="page-title">
+        Help & Support
+    </h1>
+
+    <p class="subtitle">
+        We're here to help you with your MyShop experience.
+    </p>
+
+
+
+    <!-- ================= SEARCH ================= -->
+
+    <div class="search-box">
+
+        <div class="search-title">
+            How can we help you?
+        </div>
+
+        <div class="search-wrapper">
+
+            <input
+                type="text"
+                id="helpSearch"
+                placeholder="Search for orders, payment, delivery, returns..."
+                onkeyup="searchHelp()"
+            >
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= SUPPORT OPTIONS ================= -->
+
+    <div class="support-grid">
+
+        <div
+            class="support-card"
+            onclick="orderHelp()"
+        >
+
+            <div class="support-icon">
+                📦
+            </div>
+
+            <h3>
+                Order & Delivery
+            </h3>
+
+            <p>
+                Track your order, check delivery
+                status or manage cancellation.
+            </p>
+
+        </div>
+
+
+        <div
+            class="support-card"
+            onclick="paymentHelp()"
+        >
+
+            <div class="support-icon">
+                💳
+            </div>
+
+            <h3>
+                Payment & Refund
+            </h3>
+
+            <p>
+                Get help with payments,
+                refunds and transactions.
+            </p>
+
+        </div>
+
+
+        <div
+            class="support-card"
+            onclick="returnHelp()"
+        >
+
+            <div class="support-icon">
+                🔄
+            </div>
+
+            <h3>
+                Returns & Cancellation
+            </h3>
+
+            <p>
+                Learn about cancellation
+                and return related options.
+            </p>
+
+        </div>
+
+
+        <div
+            class="support-card"
+            onclick="accountHelp()"
+        >
+
+            <div class="support-icon">
+                👤
+            </div>
+
+            <h3>
+                Account Help
+            </h3>
+
+            <p>
+                Need help with your account,
+                wishlist or cart?
+            </p>
+
+        </div>
+
+
+        <div
+            class="support-card"
+            onclick="deliveryHelp()"
+        >
+
+            <div class="support-icon">
+                🚚
+            </div>
+
+            <h3>
+                Delivery Support
+            </h3>
+
+            <p>
+                Find information about
+                delivery and estimated dates.
+            </p>
+
+        </div>
+
+
+        <div
+            class="support-card"
+            onclick="contactSupport()"
+        >
+
+            <div class="support-icon">
+                💬
+            </div>
+
+            <h3>
+                Contact Support
+            </h3>
+
+            <p>
+                Contact our support team
+                for further assistance.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= QUICK INFORMATION ================= -->
+
+    <div class="quick-info">
+
+        <div class="quick-card">
+
+            <div class="quick-icon">
+                🕐
+            </div>
+
+            <div>
+                <span>Support Hours</span>
+                <strong>9:00 AM – 6:00 PM</strong>
+            </div>
+
+        </div>
+
+
+        <div class="quick-card">
+
+            <div class="quick-icon">
+                ⚡
+            </div>
+
+            <div>
+                <span>Response Time</span>
+                <strong>Usually within 24 hours</strong>
+            </div>
+
+        </div>
+
+
+        <div class="quick-card">
+
+            <div class="quick-icon">
+                🛡️
+            </div>
+
+            <div>
+                <span>Customer Support</span>
+                <strong>Here to assist you</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= FAQ ================= -->
+
+    <div class="section">
+
+        <h2 class="section-title">
+            Frequently Asked Questions
+        </h2>
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                onclick="toggleFAQ(0)"
+            >
+
+                How can I track my order?
+
+                <span
+                    class="plus"
+                    id="plus0"
+                >
+                    +
+                </span>
+
+            </button>
+
+            <div
+                class="faq-answer"
+                id="answer0"
+            >
+                Open <b>My Orders</b> from your
+                Account page to view your order
+                status and delivery details.
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                onclick="toggleFAQ(1)"
+            >
+
+                Can I cancel my order?
+
+                <span
+                    class="plus"
+                    id="plus1"
+                >
+                    +
+                </span>
+
+            </button>
+
+            <div
+                class="faq-answer"
+                id="answer1"
+            >
+                You can open your order details
+                and use the Cancel Order option
+                when cancellation is available.
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                onclick="toggleFAQ(2)"
+            >
+
+                What payment methods are available?
+
+                <span
+                    class="plus"
+                    id="plus2"
+                >
+                    +
+                </span>
+
+            </button>
+
+            <div
+                class="faq-answer"
+                id="answer2"
+            >
+                MyShop supports UPI,
+                Credit/Debit Card and
+                Cash on Delivery.
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                onclick="toggleFAQ(3)"
+            >
+
+                Where can I view my wishlist?
+
+                <span
+                    class="plus"
+                    id="plus3"
+                >
+                    +
+                </span>
+
+            </button>
+
+            <div
+                class="faq-answer"
+                id="answer3"
+            >
+                Open your Account page and
+                select Wishlist to view your
+                saved products.
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                onclick="toggleFAQ(4)"
+            >
+
+                Where can I view my cart?
+
+                <span
+                    class="plus"
+                    id="plus4"
+                >
+                    +
+                </span>
+
+            </button>
+
+            <div
+                class="faq-answer"
+                id="answer4"
+            >
+                Open your Account page and
+                select My Cart to view the
+                products added to your cart.
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                onclick="toggleFAQ(5)"
+            >
+
+                How can I contact customer support?
+
+                <span
+                    class="plus"
+                    id="plus5"
+                >
+                    +
+                </span>
+
+            </button>
+
+            <div
+                class="faq-answer"
+                id="answer5"
+            >
+                You can contact MyShop support
+                through phone or email using
+                the contact options below.
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= CONTACT ================= -->
+
+    <div class="section">
+
+        <h2 class="section-title">
+            Contact Us
+        </h2>
+
+        <div class="contact-box">
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    📞
+                </div>
+
+                <h4>
+                    Phone Support
+                </h4>
+
+                <p>
+                    Talk to our support team
+                    during support hours.
+                </p>
+
+                <br>
+
+                <p>
+                    <a href="tel:+919876543210">
+                        +91 98765 43210
+                    </a>
+                </p>
+
+            </div>
+
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    📧
+                </div>
+
+                <h4>
+                    Email Support
+                </h4>
+
+                <p>
+                    Send us your question and
+                    we'll get back to you.
+                </p>
+
+                <br>
+
+                <p>
+                    <a href="mailto:support@myshop.com">
+                        support@myshop.com
+                    </a>
+                </p>
+
+            </div>
+
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    💬
+                </div>
+
+                <h4>
+                    Quick Assistance
+                </h4>
+
+                <p>
+                    Need help with an order?
+                    Our support team is here.
+                </p>
+
+                <br>
+
+                <p>
+                    <a
+                        href="tel:+919876543210"
+                    >
+                        Get Support →
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= FINAL SUPPORT ================= -->
+
+    <div class="final-support">
+
+        <h2>
+            Still need help?
+        </h2>
+
+        <p>
+            Our customer support team is ready
+            to help you with your questions.
+        </p>
+
+        <button
+            class="support-btn"
+            onclick="contactSupport()"
+        >
+            Contact Support
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   HOME
+===================================================== */
+
+function goHome(){
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+/* =====================================================
+   ORDER HELP
+===================================================== */
+
+function orderHelp(){
+
+    alert(
+        "Order & Delivery Help\n\n" +
+        "Open My Orders from your Account " +
+        "page to track your order, view " +
+        "delivery details or cancel an order."
+    );
+
+}
+
+
+/* =====================================================
+   PAYMENT HELP
+===================================================== */
+
+function paymentHelp(){
+
+    alert(
+        "Payment & Refund Help\n\n" +
+        "MyShop supports UPI, Card and " +
+        "Cash on Delivery.\n\n" +
+        "For payment or refund questions, " +
+        "please contact our support team."
+    );
+
+}
+
+
+/* =====================================================
+   RETURN HELP
+===================================================== */
+
+function returnHelp(){
+
+    alert(
+        "Returns & Cancellation\n\n" +
+        "Open My Orders to check whether " +
+        "cancellation is available for your order.\n\n" +
+        "For further assistance, contact support."
+    );
+
+}
+
+
+/* =====================================================
+   ACCOUNT HELP
+===================================================== */
+
+function accountHelp(){
+
+    alert(
+        "Account Help\n\n" +
+        "You can manage your orders, wishlist, " +
+        "cart and delivery address from " +
+        "the My Account page."
+    );
+
+}
+
+
+/* =====================================================
+   DELIVERY HELP
+===================================================== */
+
+function deliveryHelp(){
+
+    alert(
+        "Delivery Support\n\n" +
+        "You can view your estimated delivery " +
+        "date and order status from My Orders."
+    );
+
+}
+
+
+/* =====================================================
+   CONTACT SUPPORT
+===================================================== */
+
+function contactSupport(){
+
+    alert(
+        "Customer Support\n\n" +
+        "Phone: +91 98765 43210\n" +
+        "Email: support@myshop.com\n\n" +
+        "Support Hours: 9:00 AM – 6:00 PM"
+    );
+
+}
+
+
+/* =====================================================
+   FAQ
+===================================================== */
+
+function toggleFAQ(index){
+
+    const answer =
+        document.getElementById(
+            "answer" + index
+        );
+
+    const plus =
+        document.getElementById(
+            "plus" + index
+        );
+
+
+    if(answer.classList.contains("show")){
+
+        answer.classList.remove("show");
+
+        plus.innerText = "+";
+
+    }
+
+    else{
+
+        answer.classList.add("show");
+
+        plus.innerText = "−";
+
+    }
+
+}
+
+
+/* =====================================================
+   HELP SEARCH
+===================================================== */
+
+function searchHelp(){
+
+    const input =
+        document.getElementById(
+            "helpSearch"
+        ).value.toLowerCase().trim();
+
+
+    const cards =
+        document.querySelectorAll(
+            ".support-card"
+        );
+
+
+    cards.forEach(function(card){
+
+        const text =
+            card.innerText.toLowerCase();
+
+
+        if(
+            input === "" ||
+            text.includes(input)
+        ){
+
+            card.style.display = "block";
+
+        }
+
+        else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+
+</html>
+```

@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Account - MyShop</title>
+
+<style>
+
+/* ================= RESET ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+    color:#222;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    height:68px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:27px;
+    font-weight:bold;
+    color:#7b2cbf;
+}
+
+.home-btn{
+    border:none;
+    background:#f1e8ff;
+    color:#7b2cbf;
+    padding:10px 18px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+    width:92%;
+    max-width:1000px;
+    margin:30px auto 50px;
+}
+
+.page-title{
+    font-size:29px;
+    margin-bottom:22px;
+}
+
+/* ================= PROFILE ================= */
+
+.profile-card{
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 3px 15px rgba(0,0,0,0.06);
+    display:flex;
+    align-items:center;
+    gap:22px;
+    margin-bottom:22px;
+}
+
+.profile-icon{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:#eadcff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:36px;
+}
+
+.profile-info h2{
+    margin-bottom:7px;
+}
+
+.profile-info p{
+    color:#777;
+}
+
+/* ================= MENU ================= */
+
+.menu-card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 3px 15px rgba(0,0,0,0.06);
+}
+
+.menu-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:19px 22px;
+    border-bottom:1px solid #eee;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.menu-item:last-child{
+    border-bottom:none;
+}
+
+.menu-item:hover{
+    background:#faf7ff;
+}
+
+.menu-left{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.menu-icon{
+    width:42px;
+    height:42px;
+    border-radius:10px;
+    background:#f1e8ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+}
+
+.menu-text h3{
+    font-size:16px;
+    margin-bottom:4px;
+}
+
+.menu-text p{
+    font-size:13px;
+    color:#888;
+}
+
+.arrow{
+    font-size:22px;
+    color:#999;
+}
+
+/* ================= ADDRESS ================= */
+
+.section{
+    background:white;
+    margin-top:22px;
+    padding:23px;
+    border-radius:15px;
+    box-shadow:0 3px 15px rgba(0,0,0,0.06);
+}
+
+.section-title{
+    font-size:19px;
+    margin-bottom:18px;
+}
+
+.address-box{
+    background:#fafafa;
+    border-radius:10px;
+    padding:17px;
+    line-height:1.6;
+    color:#555;
+}
+
+.address-box strong{
+    color:#222;
+}
+
+/* ================= LOGOUT ================= */
+
+.logout-btn{
+    width:100%;
+    margin-top:22px;
+    padding:14px;
+    border-radius:9px;
+    border:1px solid #d62828;
+    background:white;
+    color:#d62828;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.logout-btn:hover{
+    background:#fff2f2;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:500;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    background:white;
+    width:340px;
+    padding:28px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.modal-box h3{
+    margin-bottom:10px;
+}
+
+.modal-box p{
+    color:#777;
+    line-height:1.5;
+}
+
+.modal-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:22px;
+}
+
+.modal-buttons button{
+    flex:1;
+    padding:12px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.yes-btn{
+    border:none;
+    background:#d62828;
+    color:white;
+}
+
+.no-btn{
+    border:1px solid #ccc;
+    background:white;
+    color:#555;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+    header{
+        padding:0 4%;
+    }
+
+    .logo{
+        font-size:23px;
+    }
+
+    .container{
+        width:94%;
+        margin-top:22px;
+    }
+
+    .page-title{
+        font-size:25px;
+    }
+
+    .profile-card{
+        padding:20px;
+    }
+
+    .profile-icon{
+        width:60px;
+        height:60px;
+        font-size:28px;
+    }
+
+    .profile-info h2{
+        font-size:19px;
+    }
+
+    .menu-item{
+        padding:16px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        MyShop
+    </div>
+
+    <button
+        class="home-btn"
+        onclick="goHome()"
+    >
+        Home
+    </button>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+    <h1 class="page-title">
+        My Account
+    </h1>
+
+
+
+    <!-- ================= PROFILE ================= -->
+
+    <div class="profile-card">
+
+        <div class="profile-icon">
+            👤
+        </div>
+
+        <div class="profile-info">
+
+            <h2 id="userName">
+                My Profile
+            </h2>
+
+            <p id="userMobile">
+                Manage your account
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= MENU ================= -->
+
+    <div class="menu-card">
+
+
+        <!-- ORDERS -->
+
+        <div
+            class="menu-item"
+            onclick="openOrders()"
+        >
+
+            <div class="menu-left">
+
+                <div class="menu-icon">
+                    📦
+                </div>
+
+                <div class="menu-text">
+
+                    <h3>
+                        My Orders
+                    </h3>
+
+                    <p>
+                        View and track your orders
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+
+
+        <!-- WISHLIST -->
+
+        <div
+            class="menu-item"
+            onclick="openWishlist()"
+        >
+
+            <div class="menu-left">
+
+                <div class="menu-icon">
+                    ❤️
+                </div>
+
+                <div class="menu-text">
+
+                    <h3>
+                        Wishlist
+                    </h3>
+
+                    <p>
+                        View your saved products
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+
+
+        <!-- CART -->
+
+        <div
+            class="menu-item"
+            onclick="openCart()"
+        >
+
+            <div class="menu-left">
+
+                <div class="menu-icon">
+                    🛒
+                </div>
+
+                <div class="menu-text">
+
+                    <h3>
+                        My Cart
+                    </h3>
+
+                    <p>
+                        View products in your cart
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+
+
+        <!-- ADDRESS -->
+
+        <div
+            class="menu-item"
+            onclick="showAddress()"
+        >
+
+            <div class="menu-left">
+
+                <div class="menu-icon">
+                    📍
+                </div>
+
+                <div class="menu-text">
+
+                    <h3>
+                        Delivery Address
+                    </h3>
+
+                    <p>
+                        Manage your delivery details
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+
+
+        <!-- CONTACT -->
+
+        <div
+            class="menu-item"
+            onclick="showContact()"
+        >
+
+            <div class="menu-left">
+
+                <div class="menu-icon">
+                    📞
+                </div>
+
+                <div class="menu-text">
+
+                    <h3>
+                        Help & Support
+                    </h3>
+
+                    <p>
+                        Contact us for assistance
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= ADDRESS ================= -->
+
+    <div
+        class="section"
+        id="addressSection"
+        style="display:none;"
+    >
+
+        <h2 class="section-title">
+            Delivery Address
+        </h2>
+
+        <div
+            class="address-box"
+            id="addressBox"
+        >
+            No address available.
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= LOGOUT ================= -->
+
+    <button
+        class="logout-btn"
+        onclick="openLogout()"
+    >
+        🚪 Logout
+    </button>
+
+</div>
+
+
+
+<!-- ================= LOGOUT MODAL ================= -->
+
+<div
+    class="modal"
+    id="logoutModal"
+>
+
+    <div class="modal-box">
+
+        <h3>
+            Logout?
+        </h3>
+
+        <p>
+            Are you sure you want to logout?
+        </p>
+
+        <div class="modal-buttons">
+
+            <button
+                class="no-btn"
+                onclick="closeLogout()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="yes-btn"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   GET LATEST ORDER
+===================================================== */
+
+const order =
+    JSON.parse(
+        localStorage.getItem("latestOrder")
+    );
+
+
+/* =====================================================
+   SHOW USER DETAILS
+===================================================== */
+
+if(order && order.customer){
+
+    document.getElementById("userName").innerText =
+        order.customer.name || "My Profile";
+
+    document.getElementById("userMobile").innerText =
+        order.customer.mobile || "Manage your account";
+
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+function goHome(){
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+/* =====================================================
+   ORDERS
+===================================================== */
+
+function openOrders(){
+
+    window.location.href =
+        "orders.html";
+
+}
+
+
+/* =====================================================
+   WISHLIST
+===================================================== */
+
+function openWishlist(){
+
+    window.location.href =
+        "home.html#wishlist";
+
+}
+
+
+/* =====================================================
+   CART
+===================================================== */
+
+function openCart(){
+
+    window.location.href =
+        "home.html#cart";
+
+}
+
+
+/* =====================================================
+   ADDRESS
+===================================================== */
+
+function showAddress(){
+
+    const section =
+        document.getElementById(
+            "addressSection"
+        );
+
+    const box =
+        document.getElementById(
+            "addressBox"
+        );
+
+
+    if(!order || !order.customer){
+
+        box.innerHTML =
+            "No delivery address available.";
+
+    }
+
+    else{
+
+        box.innerHTML = `
+
+            <strong>
+                ${order.customer.name}
+            </strong>
+            <br>
+
+            ${order.customer.address}
+            <br>
+
+            ${order.customer.city},
+            ${order.customer.state}
+            -
+            ${order.customer.pincode}
+            <br>
+
+            📞 ${order.customer.mobile}
+
+        `;
+
+    }
+
+
+    section.style.display =
+        "block";
+
+
+    section.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   SUPPORT
+===================================================== */
+
+function showContact(){
+
+    window.location.href =
+        "help.html";
+
+}
+
+
+/* =====================================================
+   LOGOUT MODAL
+===================================================== */
+
+function openLogout(){
+
+    document
+        .getElementById("logoutModal")
+        .classList.add("show");
+
+}
+
+
+function closeLogout(){
+
+    document
+        .getElementById("logoutModal")
+        .classList.remove("show");
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+    localStorage.removeItem("latestOrder");
+    localStorage.removeItem("checkoutProduct");
+
+    window.location.href =
+        "login.html";
+
+}
+
+</script>
+
+</body>
+
+</html>
